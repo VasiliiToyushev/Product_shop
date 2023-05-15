@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Работа с корзиной</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<h3 th:text="${' Корзина'}" ></h3>
+<div class="container">
+
+    <form th:action="@{/basket}"
+          th:object="${basket}" method="post" class="form-horizontal">
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название товара</th>
+                <th>Цена</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${showListProduct}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.title}"></td>
+                <td th:text="${product.price}"></td>
+                <td>
+                    <a th:href="@{'/deleteProductBasket/' + ${product.id}}" th:text=" Удалить"></a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        <span th:text="${'Count: ' + basket.count}"/>
+        <span th:text="${'Sum: ' + basket.sum}"/>
+
+        <div style="margin-top: 10px" class="form-group">
+            <div class="col-sm-6 controls">
+                <button type="submit" class="btn btn-primary">Готово</button>
+            </div>
+        </div>
+
+    </form>
+
+    <br>
+    <a th:href="@{/}">Вернуться на главную страницу</a>
+</div>
+
+</body>
+</html>

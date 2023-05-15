@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Каталог товаров</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<br>
+<a th:href="@{/}">Вернуться на главную страницу</a>
+<body>
+<table>
+    <tbody>
+    <tr th:each="basket : ${showAllBasket}">
+        <p>
+        <td th:text="@{'id: ' + ${basket.id} + ' ,'}"></td>
+        <td th:text="@{'Product: '}"/>
+<table class="table table-hover">
+    <tbody>
+    <tr th:each="product : ${basket.basketProduct}">
+        <td th:text="@{'id: ' + ${product.id}}"></td>
+        <td th:text="@{'Название: ' + ${product.title}}"/>
+        <td th:text="@{'Цена: ' + ${product.price}}"/>
+    </tr>
+    </tbody>
+</table>
+        <td th:text="@{'count: ' + ${basket.count} + ' ,'}"/>
+        <td th:text="@{'sum: ' + ${basket.sum} }"/>
+        <p>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
